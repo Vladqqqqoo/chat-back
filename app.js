@@ -7,6 +7,8 @@ const cors = require('cors');
 
 const authRouter = require('./routes/authRouter');
 const userAccountRouter = require('./routes/userAccountRouter');
+const chatRoomRouter = require('./routes/chatRoomRouter');
+
 require('dotenv').config();
 
 const passport = require('passport');
@@ -29,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
 app.use('/account', userAccountRouter);
-
+app.use('/chat/',chatRoomRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,6 +1,6 @@
 const ChatRoomModel = require('../models/chatRoomModel');
 
-class AuthService {
+class ChatRoomService {
     createRoom(req, res, next) {
         ChatRoomModel.create(req.body)
             .then((newRoom) => {
@@ -23,5 +23,5 @@ class AuthService {
 
 }
 
-let authService = new AuthService();
-module.exports = authService;
+let chatRoomService = new ChatRoomService();
+module.exports = chatRoomService;

@@ -1,9 +1,13 @@
-const authService = require('../services/authService');
+const chatRoomService = require('../services/chatRoomService');
 
 class ChatRoomController {
 
     createRoom(req, res, next) {
-        authService.logIn(req, res, next);
+        chatRoomService.createRoom(req,res,next);
+    }
+
+    getRoomsList(req, res, next) {
+        chatRoomService.getRoomsList(req, res, next);
     }
 
 }
