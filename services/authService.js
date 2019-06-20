@@ -25,7 +25,7 @@ class AuthService {
         })
         (req, res);
     }
- 
+
     logOut(req, res, next) {
         jwt.verify(req.body.refreshToken, 'refresh', function (err, data) {
             if (err) {
@@ -43,7 +43,10 @@ class AuthService {
             res.status(406).send({errorMessage, user: req.body});
         } else {
             UserModel.create(req.body)
-                .then(user => res.send(user))
+                .then(user => {
+                    console.log(user);
+                    res.json(AuthService.generateTokens(user))
+                })
                 .catch(error => res.status(400).send(error));
         }
     }
