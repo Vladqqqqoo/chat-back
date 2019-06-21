@@ -47,7 +47,9 @@ class AuthService {
                     console.log(user);
                     res.json(AuthService.generateTokens(user))
                 })
-                .catch(error => res.status(400).send(error));
+                .catch(error => {
+                    res.status(400).send(error)
+                });
         }
     }
 
