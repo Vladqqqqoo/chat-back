@@ -8,7 +8,7 @@ class AuthService {
     static generateTokens(data) {
         const jwtToken = jwt.sign({_id: data._id}, 'access', {expiresIn: "1h"});
         const refreshToken = jwt.sign({_id: data._id}, 'refresh', {expiresIn: "5h"});
-        return {jwt: jwtToken, refreshToken: refreshToken, userId: data._id};
+        return {jwt: jwtToken, refreshToken: refreshToken, userId: data._id, userName: data.login};
     }
 
     logIn(req, res, next) {

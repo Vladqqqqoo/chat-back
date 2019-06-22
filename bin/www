@@ -26,7 +26,18 @@ const io = require('socket.io').listen(server);
 
 io.on('connection', (socket) => {
     console.log('new connection made');
+
     require('../services/chatSocketService')(socket);
+
+    socket.on('new message', (message)=> {
+        console.log('NEW MESSAGE RECEIVED');
+        const messageId = Date.now();
+        console.log(message);
+        io.in(message.roomId).emit('new message received', {...message, messageId});
+    });
+
+
+
 });
 
 /**

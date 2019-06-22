@@ -1,14 +1,14 @@
+
+
 module.exports = function (socket) {
 
     socket.on('join guest room', (data) => {
         socket.join('guestroom');
         console.log('JOINED GUEST ROOM');
-        socket.emit('joined guest room');
     });
 
     socket.on('leave guest room', (data) => {
         console.log('LEFT GUEST ROOM');
-        socket.emit('left guest room');
         socket.leave('guestroom');
     });
 
@@ -17,6 +17,20 @@ module.exports = function (socket) {
         console.log('ADDED NEW ROOM');
         socket.broadcast.to('guestroom').emit('added new room', newRoom);
     });
+
+    socket.on('join room', (room) => {
+        socket.join(room.roomId);
+        console.log('JOINED ROOM');
+    });
+
+
+    socket.on('leave room', (room) => {
+        console.log('LEFT ROOM');
+        socket.leave(room.roomId);
+    });
+
+
+
 
 
     socket.on('disconnect', function (data) {
