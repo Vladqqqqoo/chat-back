@@ -6,8 +6,8 @@ const validation = require('../modules/validation');
 class AuthService {
 
     static generateTokens(data) {
-        const jwtToken = jwt.sign({_id: data._id}, 'access', {expiresIn: "1h"});
-        const refreshToken = jwt.sign({_id: data._id}, 'refresh', {expiresIn: "5h"});
+        const jwtToken = jwt.sign({_id: data._id, login: data.login}, 'access', {expiresIn: "15m"});
+        const refreshToken = jwt.sign({_id: data._id, login: data.login}, 'refresh', {expiresIn: "5h"});
         return {jwt: jwtToken, refreshToken: refreshToken, userId: data._id, userName: data.login};
     }
 
