@@ -36,6 +36,18 @@ io.on('connection', (socket) => {
         io.in(message.roomId).emit('new message received', {...message, messageId});
     });
 
+    socket.on('delete room', (roomId) => {
+        console.log(roomId);
+        console.log('DELETED ROOM');
+        io.in('guestroom').emit('deleted room', roomId);
+    });
+
+    socket.on('add new room', (newRoom) => {
+        console.log(newRoom);
+        console.log('ADDED NEW ROOM');
+        io.in('guestroom').emit('added new room', newRoom);
+    });
+
 
 
 });

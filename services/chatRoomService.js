@@ -13,11 +13,21 @@ class ChatRoomService {
 
     getRoomsList(req, res, next) {
         ChatRoomModel.find({})
-            .then((rooms)=>{
+            .then((rooms) => {
                 res.send(rooms);
             })
-            .catch((error)=> {
-                res.send(500).send(error);
+            .catch((error) => {
+                res.status(500).send(error);
+            })
+    }
+
+    deleteRoom(req, res, next) {
+        ChatRoomModel.findOneAndDelete({_id: req.params.id})
+            .then((info) => {
+                res.send(info);
+            })
+            .catch((error) => {
+                res.status(500).send(error);
             })
     }
 
